@@ -47,8 +47,8 @@ const checkDir = () => {
     checkDirExist('/data/xs');
     checkDirExist('/data/biqu');
   } else {
-    checkDirExist(path.resolve(__dirname, '../fetched/xs'));
-    checkDirExist(path.resolve(__dirname, '../fetched/biqu'));
+    checkDirExist(path.resolve(__dirname, '../../fetched/xs'));
+    checkDirExist(path.resolve(__dirname, '../../fetched/biqu'));
   }
 }
 

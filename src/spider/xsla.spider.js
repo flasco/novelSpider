@@ -20,7 +20,9 @@ XsQueue.drain = () => {
 };
 
 function start(start = 0, end = 40) {
-  fileName = path.resolve(isDocker ? '/data/xs' : '$PWD/fetched/xs', `xs-${start}-${end}.json`);
+  fileName = isDocker
+    ? path.resolve('/data/xs', `xs-${start}-${end}.json`)
+    : path.resolve(__dirname, `../../fetched/xs/xs-${start}-${end}.json`);
   appendContent(fileName, '{ "results": [', );
 
   for (let i = start; i <= end; i++) {
