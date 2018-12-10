@@ -1,0 +1,31 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "null",
+  "main": "test.js",
+  "dependencies": {
+    "async": "^2.6.1",
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-node": "^5.1.0",
+    "iconv-lite": "^0.4.24",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.1.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "scripts": {
+    "start": "node src/start.js",
+    "docker-spider-build": "docker build -t docker_spider .",
+    "docker-xs": "docker run --cpus=1 -v $PWD/fetched:/data docker_spider xs",
+    "docker-biqu": "docker run --cpus=1 -v $PWD/fetched:/data docker_spider biqu",
+    "docker-stop-all": "docker kill $(docker container ls -q)",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
