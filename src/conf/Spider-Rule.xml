@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sites>
+	<site>
+		<title>顶点小说</title>
+		<charset>GBK</charset>
+		<url>http://www.x23us.com</url>
+		<chapter-list-selector>#at td a</chapter-list-selector>
+		<chapter-detail-title-selector>#amain h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#contents</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#footlink a</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#footlink a,2</chapter-detail-next-selector>
+		<novel-list-selector>#content table tr</novel-list-selector>
+		<novel-list-next-selector>.next</novel-list-next-selector>
+		<novel-list-prev-selector>.prev</novel-list-prev-selector>
+	</site>
+	<site>
+		<title>起点</title>
+		<charset>UTF-8</charset>
+		<url>http://read.qidian.com</url>
+		<chapter-list-selector>.volume-wrap .volume li a</chapter-list-selector>
+		<novel-Rank-selector>.book-text tbody tr</novel-Rank-selector>
+	</site>
+	<site>
+		<title>笔趣阁</title>
+		<charset>UTF-8</charset>
+		<url>http://www.xs.la/</url>
+		<chapter-list-selector>#list dd a</chapter-list-selector>
+		<chapter-detail-title-selector>.bookname h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#content</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#pager_prev</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#pager_next</chapter-detail-next-selector>
+		
+	</site>
+		<site>
+		<title>落秋中文</title>
+		<charset>gbk</charset>
+		<url>http://www.luoqiu.cc/</url>
+		<chapter-list-selector>.chapterlist dd a</chapter-list-selector>
+		<chapter-detail-title-selector>#BookCon h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#BookText</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#BookCon .xb a</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#BookCon .xb a,2</chapter-detail-next-selector>
+		
+	</site>
+	<site>
+		<title>笔秋阁</title>
+		<charset>gbk</charset>
+		<url>http://www.biqiuge.com/</url>
+		<chapter-list-selector>#list dd a</chapter-list-selector>
+		<chapter-detail-title-selector>.bookname h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#content</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>.bottem a,1</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>.bottem a,3</chapter-detail-next-selector>
+	</site>
+	<site>
+		<title>看书中</title>
+		<charset>gbk</charset>
+		<url>http://www.kanshuzhong.com/</url>
+		<chapter-list-selector>.bookcontent dd a</chapter-list-selector>
+		<chapter-detail-title-selector>.ctitle</chapter-detail-title-selector>
+		<chapter-detail-content-selector>.textcontent</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>.readlink a</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>.readlink a,4</chapter-detail-next-selector>
+		<novel-list-selector>.book_list tr</novel-list-selector>
+		<novel-list-next-selector>.next</novel-list-next-selector>
+		<novel-list-prev-selector>.prev</novel-list-prev-selector>
+	</site>
+	<site>
+		<title>秋阁</title>
+		<charset>UTF-8</charset>
+		<url>http://www.qu.la/</url>
+		<chapter-list-selector>#list dd a</chapter-list-selector>
+		<chapter-detail-title-selector>.bookname h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#content</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#A1</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#A3</chapter-detail-next-selector>
+	</site>
+	<site>
+		<title>xs</title>
+		<charset>UTF-8</charset>
+		<url>http://www.xs.la/</url>
+		<chapter-list-selector>#list dd a</chapter-list-selector>
+		<chapter-detail-title-selector>.bookname h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#content</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#pager_prev</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#pager_next</chapter-detail-next-selector>
+	</site>
+</sites>
