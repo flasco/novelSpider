@@ -33,7 +33,7 @@ function fetc(start = 0, end = 40) {
 }
 
 async function fetchList(url) {
-  if (failCnt > 20) {
+  if (failCnt > 100) {
     console.log('need end.');
     XsQueue.kill();
     appendContent(fileName, ']}');
