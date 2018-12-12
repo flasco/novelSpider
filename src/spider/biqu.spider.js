@@ -8,6 +8,8 @@ let fileName;
 
 let failCnt = 0;
 
+let checkFlag = false;
+
 const BiquQueue = queue(async (url, callback) => {
   await fetchList(url);
   await sleep(1200);
@@ -20,11 +22,14 @@ BiquQueue.drain = () => {
   appendContent(fileName, ']}');
 };
 
-function fetc(start = 0, end = 40) {
+function fetc(start = 0, end = 40, checkFail = false) {
   fileName = isDocker
     ? path.resolve('/data/biqu', `biqu-${start}-${end}.json`)
     : path.resolve(__dirname, `../../fetched/biqu/biqu-${start}-${end}.json`);
   appendContent(fileName, '{ "results": [');
+
+  checkFlag = checkFail;
+
   for (let i = start; i <= end; i++) {
     for (let j = 1000 * i, top = 1000 * (i + 1); j < top; j++) {
       BiquQueue.push(`http://www.biqu.cm/${i}_${j}/`);
@@ -33,7 +38,7 @@ function fetc(start = 0, end = 40) {
 }
 
 async function fetchList(url) {
-  if (failCnt > 100) {
+  if (checkFlag && failCnt > 100) {
     console.log('need end.');
     XsQueue.kill();
     appendContent(fileName, ']}');

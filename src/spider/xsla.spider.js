@@ -8,6 +8,8 @@ let fileName;
 
 let failCnt = 0;
 
+let checkFlag = false;
+
 const XsQueue = queue(async (url, callback) => {
   await fetchList(url);
   await sleep(1200);
@@ -19,11 +21,13 @@ XsQueue.drain = () => {
   appendContent(fileName, ']}');
 };
 
-function start(start = 0, end = 40) {
+function start(start = 0, end = 40, checkFail = false) {
   fileName = isDocker
     ? path.resolve('/data/xs', `xs-${start}-${end}.json`)
     : path.resolve(__dirname, `../../fetched/xs/xs-${start}-${end}.json`);
   appendContent(fileName, '{ "results": [', );
+
+  checkFlag = checkFail;
 
   for (let i = start; i <= end; i++) {
     for (let j = 1000 * i, top = 1000 * (i + 1); j < top; j++) {
@@ -33,7 +37,7 @@ function start(start = 0, end = 40) {
 }
 
 async function fetchList(url) {
-  if (failCnt > 100) {
+  if (checkFlag && failCnt > 100) {
     console.log('need end.');
     XsQueue.kill();
     appendContent(fileName, ']}');
