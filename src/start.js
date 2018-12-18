@@ -1,4 +1,4 @@
-const sipderFactory = require('./util/factory');
+const spiderFactory = require('./util/factory');
 const { checkDir } = require('./util');
 
 // excepts like this: xs '0 40'
@@ -6,7 +6,7 @@ const argvs = process.argv.splice(2);
 
 checkDir();
 
-const spider = sipderFactory(argvs[0]);
+const spider = spiderFactory(argvs[0]);
 
 const [start, end] = argvs[1].split(' ').map(item => {
   const ret = +item;

@@ -6,14 +6,12 @@ const spiderMap = {
   'biqu': biquSpider,
 }
 
-/**
- * @param {string} site 站点
- * @return {Function} spider
- */
-module.exports = function (site) {
+function spiderFactory(site) {
   const spider = spiderMap[site];
   if (spider != null) {
     return spider;
   }
   throw new Error('error: invalid site');
 }
+
+module.exports = spiderFactory;
