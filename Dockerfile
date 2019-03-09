@@ -1,7 +1,7 @@
 #制定node镜像的版本
-FROM node:8.12.0
+FROM node:10.15.3
 #声明作者
-MAINTAINER flasco
+LABEL author=flasco
 #移动当前目录下面的文件到app目录下
 ADD . /app/
 #进入到app目录下面，类似cd

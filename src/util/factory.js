@@ -1,5 +1,5 @@
-const xsSpider = require('../spider/xsla.spider');
-const biquSpider = require('../spider/biqu.spider');
+const xsSpider = require('../spider/xsla');
+const biquSpider = require('../spider/biqu');
 
 const spiderMap = {
   'xs': xsSpider,
