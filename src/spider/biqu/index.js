@@ -6,8 +6,8 @@ const { isDocker } = require('../../util');
 
 class BiquSpider extends BaseSpider {
   constructor(start, end) {
-    this.fileName = `biqu-${start}.json`;
-    this.fileDir = isDocker
+    const fileName = `biqu-${start}.json`;
+    const fileDir = isDocker
       ? '/data/biqu/new'
       : path.resolve(__dirname, '../../../fetched/biqu/new');
     const filePath = path.resolve(fileDir, fileName);

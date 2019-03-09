@@ -14,11 +14,9 @@ const [start, end] = argvs[1].split(' ').map(item => {
   return ret;
 });
 
-const checkFail = !!argvs[2];
-
 if (end == null) throw new Error('invalid range');
 
-console.log(`spider: ${argvs[0]}, range: [${start}, ${end}], checkFail: ${checkFail}`);
+console.log(`spider: ${argvs[0]}, range: [${start}, ${end}]`);
 
 const spider = new Spider(start, end);
 

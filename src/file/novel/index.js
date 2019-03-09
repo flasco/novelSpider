@@ -1,4 +1,3 @@
-const path = require('path');
 const BaseFileOperator = require('../base');
 
 const urlBuf = Buffer.from('"url":');
@@ -47,14 +46,14 @@ class NovelFileOperator extends BaseFileOperator {
     if (this.fileSize < 1) this.appendContent('{ "results": [');
   }
 
-  async renameEnd(filePath) {
+  async renameEnd() {
     const url = await this.getLastUrl();
     this.endAppend();
 
     const end = url.match(/_(\d+)\//)[1]; // 必定符合解析规则
     const newName = this.fileName.split('.');
     newName[0] += `-${end}`;
-    this.rename(path.resolve(filePath, newName.join('.')));
+    this.rename(newName.join('.'));
   }
 
   endAppend() {

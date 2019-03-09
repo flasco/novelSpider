@@ -42,7 +42,7 @@ class BaseSpider {
 
   async queueDrain() {
     this.log('finish...');
-    await this.file.renameEnd(this.fileDir);
+    await this.file.renameEnd();
   }
 
   async fetchPage(url) {
@@ -55,7 +55,7 @@ class BaseSpider {
 
   async stop() {
     this.log('need end...');
-    await this.file.renameEnd(this.fileDir);
+    await this.file.renameEnd();
     this.queue.kill();
   }
 
