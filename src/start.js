@@ -9,7 +9,8 @@ checkDir();
 const Spider = spiderFactory(argvs[0]);
 
 const [start, end] = argvs[1].split(' ').map(item => {
-  const ret = +item * 1000;
+  const ite = +item;
+  const ret = ite > 1000 ? ite : ite * 1000;
   if (isNaN(ret)) throw new Error('invalid range');
   return ret;
 });

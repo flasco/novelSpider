@@ -24,7 +24,7 @@ async function crawlPage(url) {
       }
     });
   } catch (err) {
-    return { err: 'fetch err', data: 'null' };
+    return { err: 'fetch err', data: '' };
   }
 }
 

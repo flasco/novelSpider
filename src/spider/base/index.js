@@ -9,8 +9,10 @@ class BaseSpider {
     this.conNum = 5;
     this.failCnt = 0;
     this.needCheck = false;
-    this.queueLooper = this.queueLooper.bind(this);
+    this.log = this.log.bind(this);
+    this.stop = this.stop.bind(this);
     this.queueDrain = this.queueDrain.bind(this);
+    this.queueLooper = this.queueLooper.bind(this);
 
     this.queue = queue(this.queueLooper, this.conNum);
     this.queue.drain = this.queueDrain;
@@ -22,7 +24,7 @@ class BaseSpider {
     const novel = await this.fetchNovel(url);
     if (novel == null) {
       this.failCnt++;
-      this.log(`Jump! failCnt:`, failCnt);
+      this.log('Jump! failCnt:', this.failCnt);
     } else {
       this.failCnt > 0 && (this.failCnt = 0);
       this.log(novel.name, novel.url);
