@@ -25,7 +25,7 @@ class FileOperator {
   }
 
   async readFile(position, length) {
-    const fileContent = new Buffer(length);
+    const fileContent = Buffer.alloc(length);
     const { bytesRead } = await readFile(this.file, fileContent, 0, length, position);
     return fileContent.slice(0, bytesRead);
   }
