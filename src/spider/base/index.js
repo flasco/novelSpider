@@ -1,4 +1,4 @@
-const queue = require('async/queue');
+const Queue = require('../../third-party/queue');
 const iconv = require('iconv-lite');
 
 const FileOperator = require('../../file/novel');
@@ -11,16 +11,15 @@ class BaseSpider {
     this.needCheck = false;
     this.log = this.log.bind(this);
     this.stop = this.stop.bind(this);
-    this.queueDrain = this.queueDrain.bind(this);
-    this.queueLooper = this.queueLooper.bind(this);
 
-    this.queue = queue(this.queueLooper, this.conNum);
-    this.queue.drain = this.queueDrain;
+    this.queue = new Queue(5);
+    this.queue.drain = this.queueDrain.bind(this);
+    this.queue.work = this.queueLooper.bind(this);
 
     this.file = new FileOperator(filePath);
   }
 
-  async queueLooper(url, callback) {
+  async queueLooper(url) {
     const novel = await this.fetchNovel(url);
     if (novel == null) {
       this.failCnt++;
@@ -35,7 +34,6 @@ class BaseSpider {
       this.stop();
     }
     await sleep(1200);
-    callback();
   }
 
   log(...args) {

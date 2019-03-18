@@ -4,7 +4,6 @@
   "description": "null",
   "main": "test.js",
   "dependencies": {
-    "async": "^2.6.1",
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "iconv-lite": "^0.4.24"
