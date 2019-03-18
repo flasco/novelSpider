@@ -6,6 +6,7 @@ class Queue {
     this._preArr = [];
     this._workArr = [];
     this._concurrent = concurrent || 5;
+    this.inProcess = 0;
 
     this._workEMT = new EventEmitter();
 
@@ -27,16 +28,17 @@ class Queue {
   _workRun() {
     const workLen = this._workArr.length;
     const totalLen = workLen + this._preArr.length;
-    if (totalLen < 1) this.drain();
     for (let i = 0; i < workLen; i++) {
       const current = this._workArr[i];
       if (current.isWorking !== 1) {
         current.isWorking = 1;
+        this.inProcess++;
         this.work(current.content).then(() => {
+          this.inProcess--;
+          if (this.inProcess < 1 && totalLen < 1) this.drain();
           if (this._workArr.length < 1) {
             // 正常情况下在没处理之前 len 不会小于 1
             // 只有在 kill 之后才会出现这种情况
-            console.log('killed');
             return;
           }
           const pos = this._workArr.findIndex(val => current.id === val.id);
