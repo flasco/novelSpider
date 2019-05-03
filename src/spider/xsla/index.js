@@ -45,7 +45,7 @@ class XslaSpider extends BaseSpider {
       const ex = next > this.end ? this.end : next + (i === e ? el : 0);
 
       for (let j = sx, top = ex; j < top; j++) {
-        this.queue.push(`https://www.xs.la/${i}_${j}/`);
+        this.queue.push(`https://www.xinxs.la/${i}_${j}/`);
       }
     }
   }
