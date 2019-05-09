@@ -9,6 +9,7 @@ class BaseSpider {
     this.conNum = 5;
     this.failCnt = 0;
     this.needCheck = false;
+    this.isEnd = false;
     this.log = this.log.bind(this);
     this.stop = this.stop.bind(this);
 
@@ -29,10 +30,7 @@ class BaseSpider {
       this.log(novel.name, novel.url);
       this.file.appendContent(JSON.stringify(novel) + ',');
     }
-    if (this.failCnt > 250) {
-      this.log('已经到达边界，break...');
-      this.stop();
-    }
+    if (this.failCnt > 250) this.stop();
     await sleep(1200);
   }
 
@@ -54,9 +52,11 @@ class BaseSpider {
   }
 
   async stop() {
-    this.log('need end...');
-    await this.file.renameEnd();
+    if (this.isEnd) return;
+    this.isEnd = true;
+    this.log('已经到达边界，break...');
     this.queue.kill();
+    // kill 之后会触发 queueDrain
   }
 
   formatNovel({
