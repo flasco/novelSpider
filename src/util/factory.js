@@ -1,9 +1,11 @@
 const xsSpider = require('../spider/xsla');
 const biquSpider = require('../spider/biqu');
+const booktxtSpider = require('../spider/booktxt');
 
 const spiderMap = {
   'xs': xsSpider,
   'biqu': biquSpider,
+  'booktxt': booktxtSpider,
 }
 
 function spiderFactory(site) {

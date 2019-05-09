@@ -11,6 +11,7 @@
   "scripts": {
     "start": "node src/start.js",
     "docker-spider-build": "docker build -t docker_spider .",
+    "docker-booktxt": "docker run --cpus=1 -d -v $PWD/fetched:/data docker_spider booktxt",
     "docker-xs": "docker run --cpus=1 -d -v $PWD/fetched:/data docker_spider xs",
     "docker-biqu": "docker run --cpus=1 -d -v $PWD/fetched:/data docker_spider biqu",
     "docker-stop-all": "docker kill $(docker container ls -q)",

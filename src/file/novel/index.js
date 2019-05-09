@@ -47,6 +47,7 @@ class NovelFileOperator extends BaseFileOperator {
   }
 
   async renameEnd() {
+    if (this.isClose) return;
     const url = await this.getLastUrl();
     this.endAppend();
 
