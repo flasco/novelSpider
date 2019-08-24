@@ -6,6 +6,8 @@ const { sleep, crawlPage } = require('../../util');
 
 class BaseSpider {
   constructor(filePath) {
+    if (new.target === BaseSpider) throw new Error('本类只支持继承，请不要直接使用');
+
     this.conNum = 5;
     this.failCnt = 0;
     this.needCheck = false;
@@ -32,6 +34,10 @@ class BaseSpider {
     }
     if (this.failCnt > 250) this.stop();
     await sleep(1200);
+  }
+
+  async fetchNovel() {
+    throw new Error('请在子类中覆写本方法.');
   }
 
   log(...args) {

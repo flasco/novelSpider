@@ -7,3 +7,9 @@
 | biqu.cm           | 3             | 
 
 
+## start
+
+```bash
+yarn install # 安装依赖
+yarn start [...args] # 启动爬虫
+```
