@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "null",
   "main": "test.js",
-  "dependencies": {
-    "axios": "^0.19.0",
-    "cheerio": "^1.0.0-rc.3",
-    "iconv-lite": "^0.4.24"
-  },
   "scripts": {
     "start": "node src/start.js",
     "docker-spider-build": "docker build -t docker_spider .",
@@ -15,8 +10,19 @@
     "docker-xs": "docker run --cpus=1 -d -v $PWD/fetched:/data docker_spider xs",
     "docker-biqu": "docker run --cpus=1 -d -v $PWD/fetched:/data docker_spider biqu",
     "docker-stop-all": "docker kill $(docker container ls -q)",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --no-cache --forceExit --runInBand --detectOpenHandles"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "iconv-lite": "^0.4.24"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
 }

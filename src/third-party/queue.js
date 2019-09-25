@@ -15,10 +15,7 @@ class Queue {
   }
 
   _workPush() {
-    while (
-      this._preArr.length > 0 &&
-      this._workArr.length < this._concurrent
-    ) {
+    while (this._preArr.length > 0 && this._workArr.length < this._concurrent) {
       const item = this._preArr.shift();
       this._workArr.push(item);
     }
@@ -27,7 +24,7 @@ class Queue {
 
   _workRun() {
     const workLen = this._workArr.length;
-    const totalLen = workLen + this._preArr.length;
+
     for (let i = 0; i < workLen; i++) {
       const current = this._workArr[i];
       if (current.isWorking !== 1) {
@@ -35,12 +32,12 @@ class Queue {
         this.inProcess++;
         this.work(current.content).then(() => {
           this.inProcess--;
-          if (this.inProcess < 1 && totalLen < 1) this.drain();
-          if (this._workArr.length < 1) {
-            // 正常情况下在没处理之前 len 不会小于 1
-            // 只有在 kill 之后才会出现这种情况
-            return;
-          }
+          const curWorkLen = this._workArr.length;
+          const curTotalLen = curWorkLen + this._preArr.length;
+
+          if (this.inProcess < 1 && curTotalLen < 1) this.drain();
+          if (curWorkLen < 1) return;
+
           const pos = this._workArr.findIndex(val => current.id === val.id);
           this._workArr.splice(pos, 1);
           this._workEMT.emit('start');
@@ -68,7 +65,7 @@ class Queue {
 
   async work(item) {
     return new Promise(resolve => {
-      console.log('default work, plz overload it', item.id, item.content);
+      console.log('default work, plz overload it', item);
       setTimeout(resolve, 1000);
     });
   }
