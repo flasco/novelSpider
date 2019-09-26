@@ -19,7 +19,11 @@ class Queue {
       const item = this._preArr.shift();
       this._workArr.push(item);
     }
-    this._workEMT.emit('work');
+
+    const curTotalLen = this._workArr.length + this._preArr.length;
+
+    if (curTotalLen < 1) this.drain();
+    else this._workEMT.emit('work');
   }
 
   _workRun() {
@@ -32,12 +36,6 @@ class Queue {
         this.inProcess++;
         this.work(current.content).then(() => {
           this.inProcess--;
-          const curWorkLen = this._workArr.length;
-          const curTotalLen = curWorkLen + this._preArr.length;
-
-          if (this.inProcess < 1 && curTotalLen < 1) this.drain();
-          if (curWorkLen < 1) return;
-
           const pos = this._workArr.findIndex(val => current.id === val.id);
           this._workArr.splice(pos, 1);
           this._workEMT.emit('start');

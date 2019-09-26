@@ -33,7 +33,7 @@ class BaseSpider {
       this.file.appendContent(JSON.stringify(novel) + ',');
     }
     if (this.failCnt > 250) this.stop();
-    await sleep(1200);
+    await sleep(1400);
   }
 
   async fetchNovel() {

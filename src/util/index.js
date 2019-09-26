@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
+axios.defaults.timeout = 15000;
+
 function appendContent(file, content) {
   fs.appendFile(file, content, function(err) {
     if (err) throw err;
