@@ -8,4 +8,4 @@ for (let i = 0; i < 100; i++) {
 
 setTimeout(() => {
   queue.kill();
-}, 4000);
+}, 10000);

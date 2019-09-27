@@ -6,7 +6,7 @@ class Queue {
     this._preArr = [];
     this._workArr = [];
     this._concurrent = concurrent || 5;
-    this.inProcess = 0;
+    this._inProcess = 0;
 
     this._workEMT = new EventEmitter();
 
@@ -20,26 +20,26 @@ class Queue {
       this._workArr.push(item);
     }
 
-    const curTotalLen = this._workArr.length + this._preArr.length;
+    const totalLen = this._workArr.length + this._preArr.length;
 
-    if (curTotalLen < 1) this.drain();
+    if (totalLen < 1 && this._inProcess < 1) this.drain();
     else this._workEMT.emit('work');
   }
 
-  _workRun() {
+  async _workRun() {
     const workLen = this._workArr.length;
 
     for (let i = 0; i < workLen; i++) {
       const current = this._workArr[i];
-      if (current.isWorking !== 1) {
+      if (current && current.isWorking !== 1) {
         current.isWorking = 1;
-        this.inProcess++;
-        this.work(current.content).then(() => {
-          this.inProcess--;
-          const pos = this._workArr.findIndex(val => current.id === val.id);
-          this._workArr.splice(pos, 1);
-          this._workEMT.emit('start');
-        });
+        this._inProcess++;
+        await this.work(current.content);
+        this._inProcess--;
+        const pos = this._workArr.findIndex(val => current.id === val.id);
+        this._workArr.splice(pos, 1);
+
+        this._workEMT.emit('start');
       }
     }
   }
@@ -53,7 +53,7 @@ class Queue {
       id: this._id++,
       content: item
     });
-    this._workArr.length < 1 && this._workEMT.emit('start');
+    this._workArr.length < this._concurrent && this._workEMT.emit('start');
   }
 
   kill() {
@@ -64,7 +64,7 @@ class Queue {
   async work(item) {
     return new Promise(resolve => {
       console.log('default work, plz overload it', item);
-      setTimeout(resolve, 1000);
+      setTimeout(resolve, (Math.random() * 5000) | 0);
     });
   }
 }
