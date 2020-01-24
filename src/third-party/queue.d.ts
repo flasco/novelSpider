@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-class Queue<T> {
+declare class Queue<T> {
   constructor(concurrent: number);
 
   drain(): void;
